@@ -54,13 +54,13 @@ public class MySessionBean {
     	return "The very first response from Session Bean at: " + new SimpleDateFormat("HH:mm:ss").format(last);
     }
     
-    @Schedule(second = "*", minute = "5", hour = "*", persistent = false)
+    @Schedule(minute = "*/5", hour = "*", persistent = false)
     public void setTime() {
     	last = new Date();
 	System.out.println("-----------set time--------" + last);
     }
     
-    @Schedule(second = "*", minute = "4", hour = "*", persistent = false)
+    @Schedule(minute = "*/4", hour = "*", persistent = false)
     public void sendMessages() {
 		try {
 			System.out.println("-----------send messages--------" + Thread.currentThread().getName());
@@ -84,7 +84,7 @@ public class MySessionBean {
 		}
     }
     
-    @Schedule(second = "*", minute = "6", hour = "*", persistent = false)
+    @Schedule(minute = "*/6", hour = "*", persistent = false)
     public void sendMails() {
 		try {
 			//String mailndi = "java:jboss/mail/Default";
