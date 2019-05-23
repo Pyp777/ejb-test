@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd"
+	version="3.2">
+	<display-name>EJBDemoEAR</display-name>
+	<enterprise-beans>
+		<session>
+			<display-name>MyOldBean</display-name>
+			<ejb-name>MyOldBean</ejb-name>
+			<home>ejb.session.old.MyOldBeanHome</home>
+			<remote>ejb.session.old.MyOldBeanComponent</remote>
+			<ejb-class>ejb.session.old.MyOldBean</ejb-class>
+			<session-type>Stateless</session-type>
+		</session>
+	</enterprise-beans>
+	<ejb-client-jar>EJBProjectClient.jar</ejb-client-jar>
+</ejb-jar>

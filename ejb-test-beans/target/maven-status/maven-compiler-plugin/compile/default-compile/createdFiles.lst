@@ -1,0 +1,9 @@
+ejb\session\MySessionBean.class
+ejb\messages\MyTopicMailBean.class
+ejb\messages\MyTopicMessageBean2.class
+ejb\session\old\MyOldBeanComponent.class
+ejb\session\old\MyOldBean.class
+ejb\session\old\MyOldBeanHome.class
+ejb\messages\MyMessageBean.class
+ejb\messages\MyTopicMessageBean1.class
+ejb\session\MySessionBeanInterface.class

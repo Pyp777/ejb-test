@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ejb-test-ear</artifactId>
+	<packaging>ear</packaging>
+
+	<parent>
+		<groupId>ejb.demo</groupId>
+		<artifactId>ejb-test</artifactId>
+		<version>1</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>ejb.demo</groupId>
+			<artifactId>ejb-test-web</artifactId>
+			<version>1</version>
+			<type>war</type>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ejb.demo</groupId>
+			<artifactId>ejb-test-beans</artifactId>
+			<version>1</version>
+			<type>ejb</type>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<version>8</version>
+					<defaultLibBundleDir></defaultLibBundleDir>
+					<skinnyWars>true</skinnyWars>
+					<applicationName>ejb-test-ear</applicationName>
+					<displayName>ejb-test-ear</displayName>
+					<finalName>ejb-test-ear</finalName>
+					<outputDirectory>target</outputDirectory>
+					<modules>
+						<!-- web module -->
+						<webModule>
+							<groupId>ejb.demo</groupId>
+							<artifactId>ejb-test-web</artifactId>
+							<!-- <contextRoot>/example</contextRoot> -->
+							<bundleFileName>ejb-test-web.war</bundleFileName>
+						</webModule>
+						<!-- ejb module -->
+						<ejbModule>
+							<groupId>ejb.demo</groupId>
+							<artifactId>ejb-test-beans</artifactId>
+							<bundleFileName>ejb-test-beans.jar</bundleFileName>
+						</ejbModule>
+						<!-- jar module -->
+						<!--
+						<jarModule>
+							<groupId>ejb.demo</groupId>
+							<artifactId>ejb-test-beans</artifactId>
+							<bundleFileName>ejb-test-beans.jar</bundleFileName>
+						</jarModule>
+						-->
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,4 @@
+ejb\servlet\BeanServlet.class
+ejb\servlet\TopicServlet.class
+ejb\servlet\OldMessageServlet.class
+ejb\servlet\QueueServlet.class
