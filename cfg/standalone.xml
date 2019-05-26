@@ -169,8 +169,8 @@
 		<subsystem xmlns="urn:jboss:domain:core-management:1.0" />
 		<subsystem xmlns="urn:jboss:domain:datasources:5.0">
 			<datasources>
-				<datasource jndi-name="java:jboss/datasources/ExampleDS"
-					pool-name="ExampleDS" enabled="true" use-java-context="true">
+				<datasource jndi-name="java:jboss/datasources/myDS"
+					pool-name="myDS" enabled="true" use-java-context="true">
 					<connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
 					<driver>h2</driver>
 					<security>
@@ -220,7 +220,7 @@
 			</concurrent>
 			<default-bindings
 				context-service="java:jboss/ee/concurrency/context/default"
-				datasource="java:jboss/datasources/ExampleDS"
+				datasource="java:jboss/datasources/myDS"
 				jms-connection-factory="java:jboss/DefaultJMSConnectionFactory"
 				managed-executor-service="java:jboss/ee/concurrency/executor/default"
 				managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default"
@@ -563,6 +563,8 @@
 					name="activemq-ra"
 					entries="java:/JmsXA java:jboss/DefaultJMSConnectionFactory"
 					connectors="in-vm" transaction="xa" />
+                <jms-queue name="myQueue" entries="java:/jmx/myQueue queue/myQueue" durable="true"/>
+                <jms-topic name="myTopic" entries="java:/jmx/myTopic topic/myTopic"/>
 			</server>
 		</subsystem>
 		<subsystem
