@@ -42,9 +42,10 @@
 			<version>1.6.2</version>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>2.1.0.RELEASE</version>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>1.4.199</version>
+		    <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
