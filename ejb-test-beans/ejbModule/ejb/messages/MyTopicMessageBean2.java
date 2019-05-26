@@ -1,11 +1,14 @@
 package ejb.messages;
 
 import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
+
+import ejb.entities.DataService;
 
 /**
  * Message-Driven Bean implementation class for: MyTopicMessageBean
@@ -16,6 +19,9 @@ import javax.jms.TextMessage;
 )
 public class MyTopicMessageBean2 implements MessageListener {
 
+	@EJB
+	DataService service;
+	
 	/**
 	 * Default constructor.
 	 */
@@ -35,6 +41,8 @@ public class MyTopicMessageBean2 implements MessageListener {
 			TextMessage text = (TextMessage) message;
 			try {
 				System.out.println("MessageBean2 - Text message: " + text.getText());
+				// save message
+				service.saveMessage(text.getText(), getClass().getSimpleName());
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}

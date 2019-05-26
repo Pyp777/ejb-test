@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd"
 	version="3.2">
-	<display-name>EJBDemoEAR</display-name>
+	<display-name>ejb-test-ejb</display-name>
 	<enterprise-beans>
 		<session>
 			<display-name>MyOldBean</display-name>
@@ -14,5 +14,5 @@
 			<session-type>Stateless</session-type>
 		</session>
 	</enterprise-beans>
-	<ejb-client-jar>EJBProjectClient.jar</ejb-client-jar>
+	<ejb-client-jar>ejb-test-ejb.jar</ejb-client-jar>
 </ejb-jar>

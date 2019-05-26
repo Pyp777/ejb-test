@@ -1,9 +1,12 @@
 package ejb.session;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
@@ -18,6 +21,10 @@ import javax.jms.Topic;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import ejb.entities.DataService;
+import ejb.entities.Message;
+import ejb.entities.MessageLight;
 
 /**
  * Session Bean implementation class SessionBean
@@ -38,6 +45,9 @@ public class MySessionBean {
 	@Resource(lookup = "java:comp/DefaultJMSConnectionFactory")
 	ConnectionFactory connectionFactory;
 
+	@EJB
+	DataService service;
+	
 	// java:jboss/mail/Default
 	// java:jboss/mail/MyOtherMail
 	// @Resource(lookup = "java:jboss/mail/MyOtherMail")
@@ -51,7 +61,18 @@ public class MySessionBean {
     }
 
     public String getData() {
-    	return "The very first response from Session Bean at: " + new SimpleDateFormat("HH:mm:ss").format(last);
+    	return "Last item at: " + new SimpleDateFormat("HH:mm:ss").format(last);
+    }
+
+    public List<MessageLight> getDataList() {
+    	List<Message> list = service.getMessages();
+    	List<MessageLight> result = new ArrayList<MessageLight>();
+    	
+    	for (Message m : list) {
+    		result.add(new MessageLight(m.getId(), m.getContent(), m.getTime(), m.getSender()));
+    	}
+    	
+    	return result;
     }
     
     @Schedule(minute = "*/5", hour = "*", persistent = false)
@@ -89,7 +110,7 @@ public class MySessionBean {
 		try {
 			//String mailndi = "java:jboss/mail/Default";
 			
-			System.out.println("-----------send mails--------" + Thread.currentThread().getName());
+			//System.out.println("-----------send mails--------" + Thread.currentThread().getName());
 			
 			// MimeMessage message = new MimeMessage(mailSession);
 			// message.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse("pavel.petr@gist.cz"));

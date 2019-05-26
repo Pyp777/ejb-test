@@ -1,6 +1,12 @@
 package ejb.messages;
 
+import javax.sql.DataSource;
+
+import ejb.entities.DataService;
+
+import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -20,12 +26,18 @@ import javax.jms.TextMessage;
 			@ActivationConfigProperty(propertyName = "destination", propertyValue = "myQueue"),
 			@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue") 
 		})
-public class MyMessageBean implements MessageListener {
+public class MyQueueBean implements MessageListener {
 
+	// @Resource(lookup = "java:jboss/datasources/myDS")
+	// DataSource myDS;
+	
+	@EJB
+	DataService service;
+	
 	/**
 	 * Default constructor.
 	 */
-	public MyMessageBean() {
+	public MyQueueBean() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,6 +53,10 @@ public class MyMessageBean implements MessageListener {
 			TextMessage text = (TextMessage) message;
 			try {
 				System.out.println("Text message: " + text.getText());
+
+				// save message
+				service.saveMessage(text.getText(), getClass().getName());
+				
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}
