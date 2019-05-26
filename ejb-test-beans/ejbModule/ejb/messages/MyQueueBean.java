@@ -55,7 +55,7 @@ public class MyQueueBean implements MessageListener {
 				System.out.println("Text message: " + text.getText());
 
 				// save message
-				service.saveMessage(text.getText(), getClass().getName());
+				service.saveMessage(text.getText(), getClass().getSimpleName());
 				
 			} catch (JMSException e) {
 				e.printStackTrace();

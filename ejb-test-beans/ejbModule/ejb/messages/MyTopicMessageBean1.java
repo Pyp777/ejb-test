@@ -41,7 +41,7 @@ public class MyTopicMessageBean1 implements MessageListener {
 			try {
 				System.out.println("MessageBean1 - Text message: " + text.getText());
 				// save message
-				service.saveMessage(text.getText(), getClass().getName());
+				service.saveMessage(text.getText(), getClass().getSimpleName());
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}
